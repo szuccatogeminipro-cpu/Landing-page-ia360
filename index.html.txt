@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Curso IA360 - Multiplique sus Resultados con Inteligencia Artificial</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc;
+        }
+        .hero-bg {
+            background-color: #020617;
+            background-image: linear-gradient(to bottom right, #020617, #0f172a);
+        }
+        .cta-button {
+            background-image: linear-gradient(to right, #06b6d4, #059669);
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px 0 rgba(14, 165, 233, 0.4);
+        }
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 7px 20px 0 rgba(14, 165, 233, 0.6);
+        }
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-in-out, padding 0.5s ease-in-out;
+        }
+        .accordion-item.active .accordion-content {
+            max-height: 500px;
+            padding-top: 1rem;
+            padding-bottom: 1rem;
+        }
+        .accordion-item.active .accordion-arrow {
+            transform: rotate(180deg);
+        }
+        .accordion-arrow {
+            transition: transform 0.3s ease;
+        }
+        .card-benefit {
+            background-color: white;
+            border-radius: 0.75rem;
+            border: 1px solid transparent;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.07), 0 4px 6px -4px rgb(0 0 0 / 0.07);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            padding: 1.5rem;
+        }
+        .card-benefit::before {
+            content: '';
+            position: absolute;
+            top: 0; right: 0; bottom: 0; left: 0;
+            z-index: -1;
+            margin: -2px;
+            border-radius: inherit;
+            background: linear-gradient(to right, #06b6d4, #10b981);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .card-benefit:hover::before {
+            opacity: 1;
+        }
+        .card-benefit .content {
+            background: white;
+            border-radius: 0.60rem;
+            height: 100%;
+            width: 100%;
+            position: relative;
+            z-index: 1;
+        }
+         .card-benefit:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+        }
+        .animated-gradient-title {
+            background-image: linear-gradient(to right, #67e8f9, #10b981, #a5b4fc, #67e8f9);
+            background-size: 200% auto;
+            color: #fff;
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: gradient-flow 8s ease infinite;
+        }
+        @keyframes gradient-flow {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        .animated-marquee {
+            background: linear-gradient(to right, #06b6d4, #10b981, #8b5cf6, #ec4899, #06b6d4);
+            background-size: 200% auto;
+            animation: gradient-flow 10s linear infinite;
+            overflow: hidden;
+            white-space: nowrap;
+        }
+        .animated-marquee span {
+            display: inline-block;
+            padding-left: 100%;
+            animation: marquee 15s linear infinite;
+        }
+        @keyframes marquee {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(-100%, 0); }
+        }
+    </style>
+</head>
+<body class="text-slate-800">
+
+    <!-- SECCIÓN 1: TÍTULO Y PROMESA PRINCIPAL -->
+    <header class="hero-bg text-white">
+        <div class="container mx-auto px-6 py-20 md:py-24 text-center">
+            <div class="max-w-5xl mx-auto">
+                <h1 class="animated-gradient-title text-5xl md:text-7xl font-black mb-8">IA360 – Inteligencia Artificial Aplicada a Profesionales</h1>
+                <h2 class="text-4xl md:text-5xl font-extrabold leading-tight mb-4 text-white">Deje de Trabajar el Doble y Empiece a Multiplicar sus Resultados con IA</h2>
+                <p class="text-lg md:text-xl text-slate-300 mb-10 max-w-3xl mx-auto">El único curso 90% práctico diseñado para que profesionales como usted dominen las herramientas de IA que automatizan tareas, optimizan procesos y le devuelven el control de su tiempo.</p>
+                <a href="https://bit.ly/4m813f5" target="_blank" class="cta-button text-white font-bold py-4 px-10 rounded-full text-lg mb-10 inline-block">Reserve su Cupo Ahora</a>
+                 <!-- Countdown Timer -->
+                <div class="bg-white/10 backdrop-blur-sm rounded-xl p-6 max-w-2xl mx-auto">
+                    <h3 class="text-2xl font-bold mb-4">El curso inicia en:</h3>
+                    <div id="countdown" class="grid grid-cols-4 gap-4 text-center">
+                        <div>
+                            <span id="days" class="text-4xl font-black">00</span>
+                            <span class="block text-sm text-slate-300">Días</span>
+                        </div>
+                        <div>
+                            <span id="hours" class="text-4xl font-black">00</span>
+                            <span class="block text-sm text-slate-300">Horas</span>
+                        </div>
+                        <div>
+                            <span id="minutes" class="text-4xl font-black">00</span>
+                            <span class="block text-sm text-slate-300">Minutos</span>
+                        </div>
+                        <div>
+                            <span id="seconds" class="text-4xl font-black">00</span>
+                            <span class="block text-sm text-slate-300">Segundos</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Animated Marquee Section -->
+    <div class="animated-marquee py-3 text-white font-bold text-xl shadow-lg">
+        <span>CUPOS LIMITADOS - ¡INSCRÍBETE YA!&nbsp;&nbsp;&nbsp;&nbsp;CUPOS LIMITADOS - ¡INSCRÍBETE YA!&nbsp;&nbsp;&nbsp;&nbsp;CUPOS LIMITADOS - ¡INSCRÍBETE YA!&nbsp;&nbsp;&nbsp;&nbsp;</span>
+    </div>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-6 py-16">
+
+        <!-- SECCIÓN 2: EL PROBLEMA Y LA SOLUCIÓN -->
+        <section id="problema" class="mb-24 max-w-5xl mx-auto text-center">
+            <h2 class="text-3xl md:text-4xl font-extrabold text-slate-900 mb-4">¿Siente que las tareas repetitivas consumen su día?</h2>
+            <p class="text-lg text-slate-600 mb-6">¿Dedica horas a redactar informes, analizar datos o preparar presentaciones? En el entorno profesional actual, no se trata de trabajar más duro, sino más inteligentemente.</p>
+            <p class="text-lg text-slate-700 font-semibold">La pregunta no es <span class="text-cyan-600">si</span> la IA cambiará su profesión, sino <span class="text-cyan-600">cuándo</span> empezará a usarla a su favor.</p>
+            
+            <div class="mt-12 bg-white p-8 md:p-12 rounded-2xl shadow-xl border border-slate-200">
+                <h3 class="text-3xl font-black text-slate-800 mb-2 text-center">Presentamos el Curso <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-500 to-emerald-600">IA360</span></h3>
+                <p class="text-center text-slate-500 font-medium text-lg mb-8">Inteligencia Artificial Aplicada a Profesionales</p>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 text-left mt-8">
+                    <div class="bg-slate-50 p-6 rounded-lg border-l-4 border-cyan-500"><h4 class="font-bold text-lg text-slate-900">Modalidad</h4><p class="text-slate-600">Clases online en vivo, dos veces por semana.</p></div>
+                    <div class="bg-slate-50 p-6 rounded-lg border-l-4 border-cyan-500"><h4 class="font-bold text-lg text-slate-900">Duración</h4><p class="text-slate-600">20 horas en 10 módulos prácticos.</p></div>
+                    <div class="bg-slate-50 p-6 rounded-lg border-l-4 border-cyan-500"><h4 class="font-bold text-lg text-slate-900">Metodología</h4><p class="text-slate-600">90% práctico. Aprenda y aplique al instante.</p></div>
+                    <div class="bg-slate-50 p-6 rounded-lg border-l-4 border-cyan-500"><h4 class="font-bold text-lg text-slate-900">Facilitadora</h4><p class="text-slate-600">Silvia E. Zuccato, experta en tecnologías emergentes.</p></div>
+                    <div class="bg-slate-50 p-6 rounded-lg border-l-4 border-cyan-500"><h4 class="font-bold text-lg text-slate-900">Horario</h4><p class="text-slate-600">Lunes y Viernes, 7:30pm a 9:00pm.</p></div>
+                    <div class="bg-slate-50 p-6 rounded-lg border-l-4 border-cyan-500"><h4 class="font-bold text-lg text-slate-900">Inicio de Clases</h4><p class="text-slate-600">Lunes, 01 de Septiembre de 2025.</p></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN 3: BENEFICIOS CONCRETOS -->
+        <section id="beneficios" class="mb-24">
+            <h2 class="text-3xl md:text-4xl font-extrabold text-center mb-12 text-slate-900">¿Qué Logrará con este Curso?</h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="card-benefit"><div class="content p-6"><div class="flex items-center mb-3"><div class="p-2 bg-cyan-100 rounded-full mr-4"><svg class="w-6 h-6 text-cyan-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg></div><h3 class="font-bold text-lg">Automatizar Tareas</h3></div><p class="text-slate-600">Libere horas a la semana delegando a la IA la creación de reportes y la gestión de proyectos.</p></div></div>
+                <div class="card-benefit"><div class="content p-6"><div class="flex items-center mb-3"><div class="p-2 bg-cyan-100 rounded-full mr-4"><svg class="w-6 h-6 text-cyan-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg></div><h3 class="font-bold text-lg">Crear Documentos</h3></div><p class="text-slate-600">Genere propuestas, informes y planes de clase con una calidad y rapidez imposibles hasta ahora.</p></div></div>
+                <div class="card-benefit"><div class="content p-6"><div class="flex items-center mb-3"><div class="p-2 bg-cyan-100 rounded-full mr-4"><svg class="w-6 h-6 text-cyan-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 12l3-3 3 3 4-4M8 21l4-4 4 4M3 4h18M4 4h16v12a2 2 0 01-2 2H6a2 2 0 01-2-2V4z"></path></svg></div><h3 class="font-bold text-lg">Analizar Datos</h3></div><p class="text-slate-600">Extraiga conclusiones valiosas de hojas de cálculo sin necesidad de ser un experto en estadística.</p></div></div>
+                <div class="card-benefit"><div class="content p-6"><div class="flex items-center mb-3"><div class="p-2 bg-cyan-100 rounded-full mr-4"><svg class="w-6 h-6 text-cyan-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path></svg></div><h3 class="font-bold text-lg">Potenciar Creatividad</h3></div><p class="text-slate-600">Utilice la IA como un asistente de investigación personal para encontrar soluciones innovadoras.</p></div></div>
+                <div class="card-benefit"><div class="content p-6"><div class="flex items-center mb-3"><div class="p-2 bg-cyan-100 rounded-full mr-4"><svg class="w-6 h-6 text-cyan-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l-1-1a2 2 0 010-2.828l1-1a2 2 0 012.828 0l4 4V4a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2h12a2 2 0 002-2v-4l-4-4z"></path></svg></div><h3 class="font-bold text-lg">Diseñar Material Visual</h3></div><p class="text-slate-600">Cree imágenes para redes sociales e infografías profesionales sin contratar a un diseñador.</p></div></div>
+                <div class="card-benefit"><div class="content p-6"><div class="flex items-center mb-3"><div class="p-2 bg-cyan-100 rounded-full mr-4"><svg class="w-6 h-6 text-cyan-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 3.055A9.001 9.001 0 1020.945 13H11V3.055z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.488 9H15V3.512A9.025 9.025 0 0120.488 9z"></path></svg></div><h3 class="font-bold text-lg">Posicionarse como Líder</h3></div><p class="text-slate-600">Adopte las herramientas que definirán la próxima década y destaque sobre su competencia.</p></div></div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN 4: PRUEBA SOCIAL -->
+        <section id="testimonios" class="mb-24 bg-slate-100 py-16">
+            <div class="max-w-4xl mx-auto px-6">
+                <h2 class="text-3xl md:text-4xl font-extrabold text-center mb-12 text-slate-900">Lo que Dicen Nuestros Alumnos</h2>
+                <div class="space-y-8">
+                    <div class="bg-white p-8 rounded-lg shadow-lg relative"><svg class="absolute top-4 left-4 w-12 h-12 text-slate-200" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a6 6 0 00-6 6v3.586l-1.707 1.707A1 1 0 003.586 15h12.828a1 1 0 00.707-1.707L16 11.586V8a6 6 0 00-6-6zM10 18a3 3 0 01-3-3h6a3 3 0 01-3 3z"></path></svg><p class="text-slate-600 italic text-lg z-10 relative">"Como ingeniero, pasaba horas redactando informes. En el Módulo 4 aprendí a usar una herramienta que ahora lo hace por mí en 15 minutos. Este curso se pagó solo en la primera semana."</p><p class="text-right font-bold text-cyan-600 mt-4">— Juan C., Ingeniero de Proyectos</p></div>
+                    <div class="bg-white p-8 rounded-lg shadow-lg relative"><svg class="absolute top-4 left-4 w-12 h-12 text-slate-200" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a6 6 0 00-6 6v3.586l-1.707 1.707A1 1 0 003.586 15h12.828a1 1 0 00.707-1.707L16 11.586V8a6 6 0 00-6-6zM10 18a3 3 0 01-3-3h6a3 3 0 01-3 3z"></path></svg><p class="text-slate-600 italic text-lg z-10 relative">"Pensaba que la IA no era para abogados. Estaba equivocada. Ahora resumo casos y busco jurisprudencia de forma mucho más eficiente. IA360 me dio una ventaja competitiva que no esperaba."</p><p class="text-right font-bold text-cyan-600 mt-4">— Mariana F., Abogada Asociada</p></div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Temario Interactivo -->
+        <section id="temario" class="mb-24">
+            <h2 class="text-3xl md:text-4xl font-extrabold text-center mb-12 text-slate-900">Explore el Contenido del Curso</h2>
+            <div class="max-w-4xl mx-auto">
+                <div id="accordion-container" class="space-y-4">
+                    <!-- Accordion items will be injected here by JavaScript -->
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN 6: LA OFERTA COMPLETA -->
+        <section id="oferta" class="mb-24 bg-white p-8 md:p-12 rounded-2xl shadow-xl border border-slate-200">
+            <h2 class="text-3xl md:text-4xl font-extrabold text-center mb-12 text-slate-900">Su Inscripción Incluye Todo Esto</h2>
+            <div class="grid md:grid-cols-2 gap-6 text-lg max-w-4xl mx-auto">
+                <div class="bg-slate-50 p-5 rounded-lg flex items-center"><div class="p-2 bg-emerald-100 rounded-full mr-4"><svg class="w-6 h-6 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg></div><span class="text-slate-700"><strong class="text-slate-900">20 horas de formación</strong> en vivo.</span></div>
+                <div class="bg-slate-50 p-5 rounded-lg flex items-center"><div class="p-2 bg-emerald-100 rounded-full mr-4"><svg class="w-6 h-6 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg></div><span class="text-slate-700"><strong class="text-slate-900">Certificado de Participación</strong>.</span></div>
+                <div class="bg-slate-50 p-5 rounded-lg flex items-center"><div class="p-2 bg-emerald-100 rounded-full mr-4"><svg class="w-6 h-6 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg></div><span class="text-slate-700"><strong class="text-slate-900">Grabaciones de todas las clases</strong>.</span></div>
+                <div class="bg-slate-50 p-5 rounded-lg flex items-center"><div class="p-2 bg-emerald-100 rounded-full mr-4"><svg class="w-6 h-6 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg></div><span class="text-slate-700"><strong class="text-slate-900">Bonos especiales</strong> para los 10 primeros inscritos.</span></div>
+                <div class="bg-slate-50 p-5 rounded-lg flex items-center"><div class="p-2 bg-emerald-100 rounded-full mr-4"><svg class="w-6 h-6 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg></div><span class="text-slate-700"><strong class="text-slate-900">Formas de Pago</strong> (YAPPY, ACH, Transferencia, PAYPAL).</span></div>
+                <div class="bg-slate-50 p-5 rounded-lg flex items-center"><div class="p-2 bg-emerald-100 rounded-full mr-4"><svg class="w-6 h-6 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg></div><span class="text-slate-700"><strong class="text-slate-900">Sorteo final</strong> de cupos para cursos avanzados.</span></div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN 7: PREGUNTAS FRECUENTES (FAQ) -->
+        <section id="faq" class="mb-24 max-w-4xl mx-auto">
+            <h2 class="text-3xl md:text-4xl font-extrabold text-center mb-12 text-slate-900">Preguntas Frecuentes</h2>
+            <div class="space-y-4">
+                <details class="bg-white p-5 rounded-lg shadow-sm group border border-slate-200"><summary class="font-semibold text-lg cursor-pointer list-none flex justify-between items-center">¿Necesito tener conocimientos técnicos o de programación?<span class="transform transition-transform duration-300 group-open:rotate-180 text-cyan-500 font-bold">▼</span></summary><p class="text-slate-600 mt-4">No. El curso está diseñado desde cero para profesionales de cualquier área. Nos enfocamos en herramientas intuitivas que no requieren código. Si sabe usar un navegador de internet, está listo para empezar.</p></details>
+                <details class="bg-white p-5 rounded-lg shadow-sm group border border-slate-200"><summary class="font-semibold text-lg cursor-pointer list-none flex justify-between items-center">¿Qué pasa si no puedo asistir a una de las clases en vivo?<span class="transform transition-transform duration-300 group-open:rotate-180 text-cyan-500 font-bold">▼</span></summary><p class="text-slate-600 mt-4">No hay problema. Todas las sesiones son grabadas y tendrá acceso a ellas para verlas cuando mejor le convenga. El objetivo es que no se pierda nada del valioso contenido.</p></details>
+                <details class="bg-white p-5 rounded-lg shadow-sm group border border-slate-200"><summary class="font-semibold text-lg cursor-pointer list-none flex justify-between items-center">¿Realmente es un curso práctico o es más teoría?<span class="transform transition-transform duration-300 group-open:rotate-180 text-cyan-500 font-bold">▼</span></summary><p class="text-slate-600 mt-4">Es 90% práctico. La teoría se reduce al mínimo indispensable. Cada módulo está diseñado para que aprenda a usar una herramienta o técnica específica y la aplique en un ejercicio real que simula los desafíos de su propio trabajo.</p></details>
+            </div>
+        </section>
+
+        <!-- SECCIÓN 8: CIERRE CON URGENCIA/ESCASEZ Y CONTACTO -->
+        <section id="informacion" class="bg-gradient-to-r from-cyan-50 via-white to-emerald-50 rounded-2xl p-8 md:p-12 text-center">
+            <h2 class="text-3xl md:text-4xl font-extrabold text-slate-900 mb-4">Su futuro profesional no va a esperar. La IA ya está aquí.</h2>
+            <p class="text-lg text-slate-600 mb-8 max-w-3xl mx-auto">No deje que la oportunidad pase. Asegure su lugar y transforme su manera de trabajar para siempre.</p>
+            <div class="mt-8 inline-block bg-white rounded-xl p-8 shadow-2xl border-t-4 border-cyan-500">
+                <h3 class="text-2xl font-bold text-slate-800 mb-6">Contacte para Información:</h3>
+                <div class="flex flex-col items-center justify-center gap-6 text-xl font-semibold text-slate-700">
+                    <a href="tel:+50763901798" class="flex items-center gap-3 hover:text-cyan-600 transition-colors"><svg class="h-8 w-8 text-cyan-500" viewBox="0 0 20 20" fill="currentColor"><path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.518.759a11.03 11.03 0 004.28 4.28l.759-1.518a1 1 0 011.06-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" /></svg><span>+507 6390-1798</span></a>
+                    <a href="mailto:nexgenai2025@gmail.com" class="flex items-center gap-3 hover:text-cyan-600 transition-colors"><svg class="h-8 w-8 text-cyan-500" viewBox="0 0 20 20" fill="currentColor"><path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" /><path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" /></svg><span>nexgenai2025@gmail.com</span></a>
+                </div>
+                <div class="mt-8 border-t-2 border-slate-200 pt-6">
+                     <a href="https://bit.ly/4m813f5" target="_blank" class="cta-button text-white font-bold py-3 px-8 rounded-full text-lg inline-block">INSCRIPCIÓN AQUÍ</a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900 text-white mt-20">
+        <div class="container mx-auto px-6 py-8 text-center">
+            <h3 class="text-2xl font-bold mb-2">IA360</h3>
+            <p>&copy; 2025 IA360. Todos los derechos reservados.</p>
+            <p class="text-sm text-slate-400 mt-2">Transformando profesionales para el futuro.</p>
+        </div>
+    </footer>
+
+    <script>
+        // --- COUNTDOWN TIMER SCRIPT ---
+        const countdownDate = new Date("September 1, 2025 19:30:00").getTime();
+        const countdownFunction = setInterval(() => {
+            const now = new Date().getTime();
+            const distance = countdownDate - now;
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById("days").innerText = days.toString().padStart(2, '0');
+            document.getElementById("hours").innerText = hours.toString().padStart(2, '0');
+            document.getElementById("minutes").innerText = minutes.toString().padStart(2, '0');
+            document.getElementById("seconds").innerText = seconds.toString().padStart(2, '0');
+
+            if (distance < 0) {
+                clearInterval(countdownFunction);
+                document.getElementById("countdown").innerHTML = "<h3 class='col-span-4 text-2xl font-bold'>¡El curso ha comenzado!</h3>";
+            }
+        }, 1000);
+
+        // --- ACCORDION SCRIPT FOR SYLLABUS ---
+        const syllabusData = [
+            { module: 1, title: "Introducción a la IA y Herramientas Clave", objective: "Comprender conceptos básicos y panorama actual de la IA.", practice: "Configuración de cuentas en herramientas de IA generativa y primer ejercicio de prompts." },
+            { module: 2, title: "Automatización de Tareas Profesionales", objective: "Identificar procesos que se pueden automatizar en distintas profesiones.", practice: "Creación de flujos de trabajo automatizados con IA." },
+            { module: 3, title: "IA para Redacción y Comunicación", objective: "Optimizar la escritura profesional, correos y presentaciones.", practice: "Redacción de documentos y presentaciones usando IA." },
+            { module: 4, title: "Análisis y Procesamiento de Datos con IA", objective: "Interpretar datos y generar reportes claros.", practice: "Uso de IA para análisis de datos en Excel/Google Sheets." },
+            { module: 5, title: "IA para la Creación de Contenidos Visuales", objective: "Desarrollar imágenes, infografías y materiales gráficos.", practice: "Creación de imágenes y presentaciones visuales con IA." },
+            { module: 6, title: "Optimización de Proyectos y Gestión del Tiempo con IA", objective: "Mejorar la organización personal y de proyectos.", practice: "Planificación de tareas y proyectos con herramientas IA." },
+            { module: 7, title: "IA en la Investigación y Resolución de Problemas", objective: "Buscar, filtrar y organizar información relevante.", practice: "Taller de investigación guiada con IA." },
+            { module: 8, title: "IA para Marketing y Presencia Digital", objective: "Crear estrategias digitales personalizadas.", practice: "Creación de publicaciones y campañas con IA." },
+            { module: 9, title: "IA para Capacitación y Formación Continua", objective: "Desarrollar materiales y cursos en menos tiempo.", practice: "Creación de microcursos y evaluaciones con IA." },
+            { module: 10, title: "Proyecto Final + Casos Prácticos Reales", objective: "Integrar lo aprendido en un proyecto aplicable a la profesión de cada participante.", practice: "Presentación y retroalimentación de proyectos." }
+        ];
+
+        const accordionContainer = document.getElementById('accordion-container');
+        if (accordionContainer) {
+            syllabusData.forEach(item => {
+                const accordionItem = document.createElement('div');
+                accordionItem.className = 'accordion-item bg-white rounded-lg shadow-sm border border-slate-200';
+                accordionItem.innerHTML = `
+                    <button class="accordion-header w-full flex justify-between items-center text-left p-5 font-semibold text-lg focus:outline-none">
+                        <span><span class="text-cyan-600 font-bold">Módulo ${item.module}:</span> ${item.title}</span>
+                        <svg class="w-6 h-6 accordion-arrow flex-shrink-0 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    </button>
+                    <div class="accordion-content px-5 text-slate-600">
+                        <div class="border-t border-slate-200 pt-4">
+                            <h4 class="font-bold text-slate-800 mb-2">Objetivos:</h4>
+                            <p class="mb-4">${item.objective}</p>
+                            <h4 class="font-bold text-slate-800 mb-2">Actividades Prácticas:</h4>
+                            <p>${item.practice}</p>
+                        </div>
+                    </div>
+                `;
+                accordionContainer.appendChild(accordionItem);
+            });
+            
+            document.querySelectorAll('.accordion-header').forEach(button => {
+                button.addEventListener('click', () => {
+                    const accordionItem = button.parentElement;
+                    accordionItem.classList.toggle('active');
+                });
+            });
+        }
+        
+        // --- SMOOTH SCROLL SCRIPT ---
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetElement = document.querySelector(this.getAttribute('href'));
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+    </script>
+</body>
+</html>
